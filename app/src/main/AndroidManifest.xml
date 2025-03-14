@@ -14,14 +14,18 @@
         android:theme="@style/Theme.EventMap"
         tools:targetApi="31">
 
-        <!-- Основная активность, которая будет запускаться при старте приложения -->
+        <!-- Главная активность, которая открывается при запуске -->
         <activity android:name=".Registration"
-            android:exported="true"> <!-- Добавлен атрибут android:exported -->
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Добавляем WelcomeActivity -->
+        <activity android:name=".Welcome" />
+
     </application>
 
 </manifest>

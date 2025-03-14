@@ -8,67 +8,65 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
-        android:layout_width="395dp"
-        android:layout_height="54dp"
+        android:layout_width="409dp"
+        android:layout_height="53dp"
         android:background="@color/black"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/appNameText"
         android:layout_width="197dp"
         android:layout_height="0dp"
-        android:text="EventMap"
+        android:text="   EventMap"
         android:textColor="#ffffff"
         android:textSize="34sp"
-        tools:layout_editor_absoluteX="109dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/materialToolbar"
         tools:layout_editor_absoluteY="8dp" />
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="206dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="78dp"
-        android:background="@null"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/edit_text_border"
         android:ems="10"
         android:gravity="center"
         android:hint="Введите логин"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2" />
 
     <EditText
         android:id="@+id/editTextTextPassword2"
-        android:layout_width="206dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="78dp"
-        android:background="@null"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/edit_text_border"
         android:ems="10"
         android:gravity="center"
         android:hint="Введите пароль"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="64dp"
         android:text="Регистрация"
         android:textColor="#0D0C0C"
-        android:textSize="34sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 
@@ -80,9 +78,26 @@
         android:backgroundTint="@color/black"
         android:text="Создать аккаунт"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif"
+        android:text="Уже есть аккаунт? Войти"
+        android:textColor="#101010"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerBtn"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
