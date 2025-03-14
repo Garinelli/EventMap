@@ -7,11 +7,12 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="399dp"
-        android:layout_height="311dp"
-        android:text="Добро пожаловать в приложение EventMap. Здесь вы можете отмечать на карте места, в которых проходят мероприятия"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добро пожаловать в приложение EventMap.\n Здесь вы можете отмечать на карте места, в которых проходят мероприятия"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@drawable/edit_welcome_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

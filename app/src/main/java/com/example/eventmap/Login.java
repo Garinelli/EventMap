@@ -8,27 +8,28 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Registration extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.login);
+        // noAccount
 
-        Button registerBtn = findViewById(R.id.registerBtn);
-        TextView haveAccount = findViewById(R.id.haveAccount);
+        Button loginBtn = findViewById(R.id.loginBtn);
+        TextView noAccount = findViewById(R.id.noAccount);
 
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Registration.this, Welcome.class);
+                Intent intent = new Intent(Login.this, Welcome.class);
                 startActivity(intent);
             }
         });
 
-        haveAccount.setOnClickListener(new View.OnClickListener() {
+        noAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Registration.this, Login.class);
+                Intent intent = new Intent(Login.this, Registration.class);
                 startActivity(intent);
             }
         });

@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Регистрация"
+        android:text="Вход"
         android:textColor="#0D0C0C"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,12 +71,12 @@
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 
     <Button
-        android:id="@+id/registerBtn"
+        android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="136dp"
         android:backgroundTint="@color/black"
-        android:text="Создать аккаунт"
+        android:text="Войти"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,12 +85,12 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/haveAccount"
+        android:id="@+id/noAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="sans-serif"
-        android:text="Уже есть аккаунт? Войти"
+        android:text="Нет аккаунта? создать"
         android:textColor="#101010"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

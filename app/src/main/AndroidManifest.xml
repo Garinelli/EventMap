@@ -23,8 +23,8 @@
             </intent-filter>
         </activity>
 
-        <!-- Добавляем WelcomeActivity -->
         <activity android:name=".Welcome" />
+        <activity android:name=".Login" />
 
     </application>
 
