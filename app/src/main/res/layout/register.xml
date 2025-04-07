@@ -29,7 +29,7 @@
         tools:layout_editor_absoluteY="8dp" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/registerLogin"
         android:layout_width="250dp"
         android:layout_height="33dp"
         android:layout_marginTop="116dp"
@@ -38,13 +38,13 @@
         android:gravity="center"
         android:hint="Введите логин"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
+        app:layout_constraintBottom_toTopOf="@+id/registerPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/registerPassword"
         android:layout_width="250dp"
         android:layout_height="32dp"
         android:layout_marginTop="48dp"
@@ -55,7 +55,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/registerLogin" />
 
 
     <TextView
@@ -81,7 +81,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2"
+        app:layout_constraintTop_toBottomOf="@+id/registerPassword"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -99,5 +99,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerBtn"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="226dp"
+        android:layout_height="39dp"
+        android:text="Пользователь с таким логином уже существует!"
+        android:textAlignment="center"
+        android:textColor="#FF0505"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerPassword"
+        app:layout_constraintVertical_bias="0.44" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

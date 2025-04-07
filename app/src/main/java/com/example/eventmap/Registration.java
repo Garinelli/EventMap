@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.EditText;
 import androidx.room.Room;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import android.database.sqlite.SQLiteConstraintException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.eventmap.db.AppDatabase;
@@ -48,8 +50,31 @@ public class Registration extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Registration.this, Welcome.class);
-                startActivity(intent);
+                EditText loginField = findViewById(R.id.registerLogin);
+                EditText passwordField = findViewById(R.id.registerPassword);
+                TextView errorText = findViewById(R.id.errorText);
+                errorText.setVisibility(View.GONE);
+
+                String login = loginField.getText().toString();
+                String password = passwordField.getText().toString();
+
+                ExecutorService executor = Executors.newSingleThreadExecutor();
+                executor.execute(() -> {
+                    try {
+                        User user = new User(login, password);
+                        database.userDao().insert(user);
+
+                        runOnUiThread(() -> {
+                            Intent intent = new Intent(Registration.this, Welcome.class);
+                            startActivity(intent);
+                        });
+
+                    } catch (Exception e) {
+                        runOnUiThread(() -> {
+                            errorText.setVisibility(View.VISIBLE);
+                        });
+                    }
+                });
             }
         });
 

@@ -2,8 +2,9 @@ package com.example.eventmap.db;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.Index;
 
-@Entity(tableName = "users")
+@Entity(tableName = "users", indices = {@Index(value = {"login"}, unique = true)})
 public class User {
     @PrimaryKey(autoGenerate = true)
     public int id;
