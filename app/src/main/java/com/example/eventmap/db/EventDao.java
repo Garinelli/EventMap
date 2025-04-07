@@ -11,9 +11,9 @@ public interface EventDao {
     @Insert
     void insert(Event event);
 
-    @Query("SELECT * FROM Event")
+    @Query("SELECT * FROM events")
     List<User> getAll();
 
-    @Query("DELETE FROM Event")
+    @Query("DELETE FROM events")
     void deleteAll();
 }

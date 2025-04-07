@@ -31,30 +31,30 @@
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
         android:layout_marginTop="116dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:gravity="center"
         android:hint="Введите логин"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/editTextTextPassword2"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:gravity="center"
         android:hint="Введите пароль"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
 

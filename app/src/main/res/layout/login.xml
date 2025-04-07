@@ -31,7 +31,7 @@
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
         android:layout_marginTop="116dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
@@ -46,7 +46,7 @@
     <EditText
         android:id="@+id/editTextTextPassword2"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"

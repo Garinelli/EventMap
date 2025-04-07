@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EventMap"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.yandex.maps.api.API_KEY"
+            android:value="4fb04877-ed20-4a8f-a8b2-d84c09c4775c" />
 
         <!-- Главная активность, которая открывается при запуске -->
         <activity android:name=".Registration"

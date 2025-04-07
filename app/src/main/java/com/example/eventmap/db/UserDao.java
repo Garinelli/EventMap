@@ -11,9 +11,9 @@ public interface UserDao {
     @Insert
     void insert(User user);
 
-    @Query("SELECT * FROM User")
+    @Query("SELECT * FROM users")
     List<User> getAll();
 
-    @Query("DELETE FROM User")
+    @Query("DELETE FROM users")
     void deleteAll();
 }
