@@ -19,7 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 public class Options extends AppCompatActivity {
-    public static AppDatabase database;
+    private AppDatabase database;
+    private RecyclerView recyclerView;
+    private EventAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,48 +39,45 @@ public class Options extends AppCompatActivity {
         // Устанавливаем логин в TextView
         userLoginText.setText("Ваш логин: " + login);
 
-        RecyclerView recyclerView = findViewById(R.id.eventRecycler);
+        // Инициализация RecyclerView
+        recyclerView = findViewById(R.id.eventRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Получаем все события из БД
+        // Инициализация базы данных
+        database = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "eventmap-database")
+                .fallbackToDestructiveMigration()
+                .build();
+
+        // Получаем все события из базы данных
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
-            database = Room.databaseBuilder(getApplicationContext(),
-                            AppDatabase.class, "eventmap-database")
-                    .fallbackToDestructiveMigration()
-                    .build();
             List<Event> events = database.eventDao().getAll();
 
             runOnUiThread(() -> {
-                EventAdapter adapter = new EventAdapter(events);
+                // Передаем базу данных в адаптер
+                adapter = new EventAdapter(events, database);
                 recyclerView.setAdapter(adapter);
             });
         });
 
         // Переход на главную страницу
-        mainPageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Options.this, MainView.class);
-                startActivity(intent);
-            }
+        mainPageBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Options.this, MainView.class);
+            startActivity(intent);
         });
 
         // Логика выхода из приложения и удаления логина из SharedPreferences
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Очищаем SharedPreferences при выходе
-                SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.remove("login"); // Удаляем логин
-                editor.apply(); // Применяем изменения
+        logout.setOnClickListener(v -> {
+            // Очищаем SharedPreferences при выходе
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.remove("login"); // Удаляем логин
+            editor.apply(); // Применяем изменения
 
-                // Переходим в экран логина
-                Intent intent = new Intent(Options.this, Login.class);
-                startActivity(intent);
-                finish(); // Закрываем текущую активность
-            }
+            // Переходим в экран логина
+            Intent intent = new Intent(Options.this, Login.class);
+            startActivity(intent);
+            finish(); // Закрываем текущую активность
         });
     }
 }
