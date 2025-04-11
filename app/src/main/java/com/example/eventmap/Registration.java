@@ -10,7 +10,6 @@ import android.widget.EditText;
 import androidx.room.Room;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import android.database.sqlite.SQLiteConstraintException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.eventmap.db.AppDatabase;
@@ -24,26 +23,38 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
+        // Проверяем SharedPreferences, если логин уже сохранен, переходим в Welcome
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String savedLogin = prefs.getString("login", null);
+
+        if (savedLogin != null) {
+            // Если логин существует в SharedPreferences, сразу переходим в Welcome
+            Intent intent = new Intent(Registration.this, Welcome.class);
+            startActivity(intent);
+            finish(); // Закрываем текущую активность Registration
+            return; // Прерываем выполнение onCreate
+        }
+
+        // Инициализация базы данных
         database = Room.databaseBuilder(getApplicationContext(),
                         AppDatabase.class, "eventmap-database")
                 .fallbackToDestructiveMigration()
                 .build();
 
-        SharedPreferences prefs = getSharedPreferences("eventmap_prefs", MODE_PRIVATE);
         boolean isFirstRun = prefs.getBoolean("is_first_run", true);
 
         Button registerBtn = findViewById(R.id.registerBtn);
         TextView haveAccount = findViewById(R.id.haveAccount);
 
         if (isFirstRun) {
-            // 3. Если да — добавляем дефолтного пользователя в фоне
+            // Если это первый запуск — добавляем дефолтного пользователя
             ExecutorService executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
                 User defaultUser = new User("admin", "adminpassword");
                 database.userDao().insert(defaultUser);
             });
 
-            // 4. Устанавливаем флаг, что запуск уже был
+            // Устанавливаем флаг, что запуск уже был
             prefs.edit().putBoolean("is_first_run", false).apply();
         }
 
@@ -65,8 +76,16 @@ public class Registration extends AppCompatActivity {
                         database.userDao().insert(user);
 
                         runOnUiThread(() -> {
+                            // Сохраняем логин пользователя в SharedPreferences
+                            getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                                    .edit()
+                                    .putString("login", login)
+                                    .apply();
+
+                            // Переходим на активность Welcome
                             Intent intent = new Intent(Registration.this, Welcome.class);
                             startActivity(intent);
+                            finish(); // Закрываем текущую активность
                         });
 
                     } catch (Exception e) {
@@ -85,6 +104,5 @@ public class Registration extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

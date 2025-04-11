@@ -48,6 +48,10 @@ public class Login extends AppCompatActivity {
                             errorText.setVisibility(View.VISIBLE);
                         } else {
                             errorText.setVisibility(View.GONE);
+                            getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                                    .edit()
+                                    .putString("login", login)
+                                    .apply();
                             Intent intent = new Intent(Login.this, Welcome.class);
                             startActivity(intent);
                         }

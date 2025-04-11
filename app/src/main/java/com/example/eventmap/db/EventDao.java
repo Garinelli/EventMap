@@ -12,7 +12,7 @@ public interface EventDao {
     void insert(Event event);
 
     @Query("SELECT * FROM events")
-    List<User> getAll();
+    List<Event> getAll();
 
     @Query("DELETE FROM events")
     void deleteAll();
