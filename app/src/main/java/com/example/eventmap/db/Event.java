@@ -11,13 +11,11 @@ public class Event {
     public float latitude;
     public float longitude;
 
-    public String name;
     public String description;
 
-    public Event(float latitude, float longitude, String name, String description){
+    public Event(float latitude, float longitude, String description){
         this.latitude = latitude;
         this.longitude = longitude;
-        this.name = name;
         this.description = description;
     }
 
@@ -43,14 +41,6 @@ public class Event {
 
     public void setLongitude(float longitude) {
         this.longitude = longitude;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {

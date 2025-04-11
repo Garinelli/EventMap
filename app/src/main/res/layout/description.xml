@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/descriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="156dp"
@@ -63,6 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionText"
         app:layout_constraintVertical_bias="0.574" />
 </androidx.constraintlayout.widget.ConstraintLayout>
