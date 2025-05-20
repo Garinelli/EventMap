@@ -16,9 +16,6 @@ public class MainView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Инициализация Яндекс.Карт с API-ключом
-        MapKitFactory.setApiKey("4fb04877-ed20-4a8f-a8b2-d84c09c4775c");
-        MapKitFactory.initialize(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
