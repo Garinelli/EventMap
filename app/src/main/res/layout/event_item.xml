@@ -11,7 +11,6 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <!-- Описание события -->
         <TextView
             android:id="@+id/eventDescription"
             android:layout_width="wrap_content"
@@ -20,11 +19,23 @@
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
-        <!-- Кнопка для удаления события -->
-        <Button
-            android:id="@+id/deleteButton"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Удалить" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Редактировать" />
+
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Удалить"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

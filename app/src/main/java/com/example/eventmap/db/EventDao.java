@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Delete;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface EventDao {
 
     @Delete  // Это аннотация для удаления конкретного объекта
     void delete(Event event);  // Удаляет переданный объект
+
+    @Update
+    void update(Event event); // <-- ВАЖНО!
 }
