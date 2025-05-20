@@ -22,10 +22,10 @@ import com.yandex.mapkit.map.CameraPosition;
 public class MainView extends AppCompatActivity {
 
     private MapView mapView;
+    private Point lastTappedPoint; // сохраняем координаты последней метки
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
@@ -40,6 +40,10 @@ public class MainView extends AppCompatActivity {
         mapView.getMap().addInputListener(new InputListener() {
             @Override
             public void onMapTap(@NonNull Map map, @NonNull Point point) {
+                // Сохраняем координаты
+                lastTappedPoint = point;
+
+                // Добавляем метку
                 map.getMapObjects().addPlacemark(
                         point,
                         ImageProvider.fromResource(MainView.this, R.drawable.baseline_location_on_24)
@@ -48,7 +52,7 @@ public class MainView extends AppCompatActivity {
 
             @Override
             public void onMapLongTap(@NonNull Map map, @NonNull Point point) {
-                // Можно обработать долгий тап, если нужно
+                // Можно добавить другое поведение при долгом нажатии
             }
         });
 
@@ -56,8 +60,13 @@ public class MainView extends AppCompatActivity {
         ImageView optionsBtn = findViewById(R.id.settingsIcon);
 
         loginBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(MainView.this, DesignatePlace.class);
-            startActivity(intent);
+            if (lastTappedPoint != null) {
+                // Передаем координаты в Intent
+                Intent intent = new Intent(MainView.this, Description.class);
+                intent.putExtra("latitude", lastTappedPoint.getLatitude());
+                intent.putExtra("longitude", lastTappedPoint.getLongitude());
+                startActivity(intent);
+            }
         });
 
         optionsBtn.setOnClickListener(v -> {

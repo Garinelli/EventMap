@@ -20,20 +20,26 @@ import java.util.concurrent.Executors;
 public class Description extends AppCompatActivity {
     public static AppDatabase database;
 
+    private double latitude;
+    private double longitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.description);
+
+        // Получаем координаты из Intent
+        latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        longitude = getIntent().getDoubleExtra("longitude", 0.0);
 
         database = Room.databaseBuilder(getApplicationContext(),
                         AppDatabase.class, "eventmap-database")
                 .fallbackToDestructiveMigration()
                 .build();
 
-
         Button loginBtn = findViewById(R.id.addDesc);
-        // Описание места
         EditText descriptionText = findViewById(R.id.descriptionText);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,13 +47,15 @@ public class Description extends AppCompatActivity {
 
                 ExecutorService executor = Executors.newSingleThreadExecutor();
                 executor.execute(() -> {
-                    Event event = new Event(12.5f, 13.5f, description);
+                    // Используем latitude и longitude из интента
+                    Event event = new Event((float) latitude, (float) longitude, description);
                     database.eventDao().insert(event);
                 });
 
-                Intent intent = new Intent(Description.this, MainView .class);
+                Intent intent = new Intent(Description.this, MainView.class);
                 startActivity(intent);
             }
         });
     }
 }
+

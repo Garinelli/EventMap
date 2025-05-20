@@ -30,7 +30,6 @@
         <activity android:name=".Welcome" />
         <activity android:name=".Login" />
         <activity android:name=".MainView" />
-        <activity android:name=".DesignatePlace" />
         <activity android:name=".Description" />
         <activity android:name=".Options" />
 
