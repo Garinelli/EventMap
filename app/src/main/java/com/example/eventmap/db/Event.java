@@ -13,10 +13,12 @@ public class Event {
 
     public String description;
 
-    public Event(float latitude, float longitude, String description){
+    public String weather;
+    public Event(float latitude, float longitude, String description, String weather){
         this.latitude = latitude;
         this.longitude = longitude;
         this.description = description;
+        this.weather = weather;
     }
 
     public int getId() {
@@ -27,6 +29,8 @@ public class Event {
         this.id = id;
     }
 
+    public String getWeather(){return weather;}
+    public void setWeather(String weather){this.weather = weather;}
     public float getLatitude() {
         return latitude;
     }
