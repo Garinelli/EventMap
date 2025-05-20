@@ -38,6 +38,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = events.get(position);
         holder.descriptionText.setText(event.description);
+        holder.weather.setText(event.weather);
 
         // Открытие EventMapActivity по клику на весь элемент
         holder.itemView.setOnClickListener(v -> {
@@ -99,6 +100,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
         TextView descriptionText;
+        TextView weather;
         Button deleteButton;
         Button editButton;
 
@@ -107,6 +109,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             descriptionText = itemView.findViewById(R.id.eventDescription);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             editButton = itemView.findViewById(R.id.editButton);
+            weather = itemView.findViewById(R.id.weather);
         }
     }
 }
