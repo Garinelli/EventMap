@@ -2,6 +2,7 @@ package com.example.eventmap;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,12 +39,26 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         Event event = events.get(position);
         holder.descriptionText.setText(event.description);
 
+        // Открытие EventMapActivity по клику на весь элемент
+        holder.itemView.setOnClickListener(v -> {
+            Context context = v.getContext();
+            Intent intent = new Intent(context, EventMapActivity.class);
+            intent.putExtra("latitude", (double) event.latitude);
+            intent.putExtra("longitude", (double) event.longitude);
+            context.startActivity(intent);
+        });
+
         holder.deleteButton.setOnClickListener(v -> {
             ExecutorService executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
                 database.eventDao().delete(event);
-                events.remove(position);
-                holder.itemView.post(() -> notifyItemRemoved(position));
+                // Чтобы избежать проблем с изменением списка из другого потока,
+                // обновление UI делаем через post
+                holder.itemView.post(() -> {
+                    events.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, events.size());
+                });
             });
         });
 
@@ -54,13 +69,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
             final EditText input = new EditText(context);
             input.setInputType(InputType.TYPE_CLASS_TEXT);
-            input.setText(event.getDescription());
+            input.setText(event.description);
             builder.setView(input);
 
             builder.setPositiveButton("Сохранить", (dialog, which) -> {
                 String newDescription = input.getText().toString().trim();
                 if (!newDescription.isEmpty()) {
-                    event.setDescription(newDescription);
+                    event.description = newDescription;
                     ExecutorService executor = Executors.newSingleThreadExecutor();
                     executor.execute(() -> {
                         database.eventDao().update(event);

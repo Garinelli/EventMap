@@ -52,7 +52,14 @@ public class MainView extends AppCompatActivity {
 
             @Override
             public void onMapLongTap(@NonNull Map map, @NonNull Point point) {
-                // Можно добавить другое поведение при долгом нажатии
+                // Сохраняем координаты
+                lastTappedPoint = point;
+
+                // Добавляем метку
+                map.getMapObjects().addPlacemark(
+                        point,
+                        ImageProvider.fromResource(MainView.this, R.drawable.baseline_location_on_24)
+                );
             }
         });
 

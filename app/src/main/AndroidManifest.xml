@@ -32,6 +32,7 @@
         <activity android:name=".MainView" />
         <activity android:name=".Description" />
         <activity android:name=".Options" />
+        <activity android:name=".EventMapActivity" />
 
 
     </application>
