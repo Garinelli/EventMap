@@ -7,11 +7,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.yandex.mapkit.MapKitFactory;
+import com.yandex.mapkit.mapview.MapView;
+
 public class MainView extends AppCompatActivity {
+
+    private MapView mapView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Инициализация Яндекс.Карт с API-ключом
+        MapKitFactory.setApiKey("4fb04877-ed20-4a8f-a8b2-d84c09c4775c");
+        MapKitFactory.initialize(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        // Ищем MapView по ID
+        mapView = findViewById(R.id.mapview);
 
         Button loginBtn = findViewById(R.id.addPlace);
         ImageView optionsBtn = findViewById(R.id.settingsIcon);
@@ -31,5 +44,19 @@ public class MainView extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mapView.onStart();
+        MapKitFactory.getInstance().onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        mapView.onStop();
+        MapKitFactory.getInstance().onStop();
+        super.onStop();
     }
 }
